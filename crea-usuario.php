@@ -11,5 +11,7 @@
             <p><input type="submit" /></p>
         </form>
 
+                                   <?php echo $_POST['nombre'] ?>
+
     </body>
 </html>
