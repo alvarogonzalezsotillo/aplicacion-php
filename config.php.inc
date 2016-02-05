@@ -31,6 +31,9 @@ function conexion_bbdd()
     {
         die("Connection failed: " . $conn->connect_error);
     }
+
+    $conn->autocommit(TRUE);
+    
     return $conn;
 }
 
@@ -38,8 +41,6 @@ function traza($msg)
 {
     error_log($msg);
 }
-
-traza('incluido config.php');
 
 function trazaobj($nombre,$obj)
 {

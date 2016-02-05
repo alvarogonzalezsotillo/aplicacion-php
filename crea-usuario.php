@@ -4,14 +4,24 @@
     </head>
     <body>
 
+        <?php
+        require_once('usuarios.php.inc');
+        $nuevonombre = $_POST['nombre'];
+        if(!$nuevonombre)
+        {
+            die('Me falta el nombre del usuario a crear');
+        }
+        
+        $con = conexion_bbdd();
+        $usuario = crea_usuario($con,$nuevonombre);
+        
 
+        ?>
 
-        <form method="post">
-            <p>Nombre de usuario: <input type="text" name="nombre" /></p>
-            <p><input type="submit" /></p>
-        </form>
+        El usuario <?php echo $usuario->nombre ?> ha sido creado con indentificador <?php echo $usuario->idusuario ?>
 
-                                   <?php echo $_POST['nombre'] ?>
+        <input type="submit" value="atras" onclick="window.location.href='usuarios.php'">
+
 
     </body>
 </html>

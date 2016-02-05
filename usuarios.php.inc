@@ -4,7 +4,7 @@ require_once 'config.php.inc';
 
 function usuarioobj($id,$nombre)
 {
-    (object)array('idusuario'=>$id, 'nombre'=>$nombre);
+    return (object)array('idusuario'=>$id, 'nombre'=>$nombre);
 }
 
 
@@ -12,7 +12,9 @@ function crea_usuario($con,$nombre)
 {
     $stmt = $con->prepare("insert into usuarios(nombre) values(?)");
     $stmt->bind_param('s',$nombre);
-    $stmt->execute();
+    if( !$stmt->execute() ){
+        die('Error insertando usuario' . $stmt->error);
+    }
     $stmt->close();
         
     $id = $con->insert_id;
@@ -25,6 +27,23 @@ function borra_usuario($con,$id)
     $stmt->bind_param('i',$id);
     $stmt->execute();
     $stmt->close();
+}
+
+function lee_usuario($con,$id)
+{
+    $stmt = $con->prepare("select idusuario,nombre from usuarios where idusuario=?");
+    $stmt->bind_param('i',$id);
+    $stmt->execute();
+    $res = $stmt.get_result();
+    if($res->num_rows == 0 )
+    {
+        return null;
+    }
+    $res->data_seek(0);
+    $return = [];
+    $row = $res->fetch_assoc();
+    $stmt->close();
+    return (object)$row;
 }
 
 function lista_usuarios($con)
