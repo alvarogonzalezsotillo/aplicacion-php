@@ -9,7 +9,7 @@
             <h1>Creaci&oacute;n de usuario</h1>
             <form method="post" action="crea-usuario.php">
                 <p>Nombre de usuario: <input type="text" name="nombre" /></p>
-                <p><input type="submit" /></p>
+                <p><input type="submit"  value="Crear usuario"/></p>
             </form>
         </div>
 
