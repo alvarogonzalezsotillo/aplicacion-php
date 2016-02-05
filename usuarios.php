@@ -4,6 +4,17 @@
     </head>
     <body>
 
+        <form name="formocultoparapost" action="modifica-usuario.php" method="POST">
+            <input type="hidden" name="idusuario">
+        </form>
+        <script>
+         function s(id)
+         {
+             document.formocultoparapost.idusuario.value=id;
+             document.formocultoparapost.submit();
+         }
+        </script>
+
         <table border=1>
             <tr>
                 <td>ID</td><td>Nombre</td>
@@ -15,9 +26,10 @@
             $usuarios = lista_usuarios($con);
             foreach($usuarios as $u)
             {
-                $link = 'modifica-usuario.php
+
                 echo '<tr><td>' . $u->idusuario . '</td>' ;
-                echo '<td>' . $u->nombre . "</td></tr>\n";
+                echo '<td><a href="#" onclick="s('.$u->idusuario.')">' . $u->nombre . "</a></td></tr>";
+                echo  "\n";
             }
             ?>
         </table>

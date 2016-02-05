@@ -16,7 +16,7 @@ function crea_usuario($con,$nombre)
         die('Error insertando usuario' . $stmt->error);
     }
     $stmt->close();
-        
+    
     $id = $con->insert_id;
     return usuarioobj($id,$nombre);
 }
@@ -29,21 +29,32 @@ function borra_usuario($con,$id)
     $stmt->close();
 }
 
+function modifica_usuario($con,$id,$nombre)
+{
+    $stmt = $con->prepare("update usuarios set nombre=? where idusuario=?");
+    $stmt->bind_param('si',$nombre,$id);
+    
+    if( !$stmt->execute() ){
+        die( "Error en la query de usuarios:" . $stmt->error );
+    }
+    
+    $stmt->close();
+}
+
+
 function lee_usuario($con,$id)
 {
     $stmt = $con->prepare("select idusuario,nombre from usuarios where idusuario=?");
     $stmt->bind_param('i',$id);
-    $stmt->execute();
-    $res = $stmt.get_result();
-    if($res->num_rows == 0 )
-    {
-        return null;
+    
+    if( !$stmt->execute() ){
+        die( "Error en la query de usuarios:" . $stmt->error );
     }
-    $res->data_seek(0);
-    $return = [];
-    $row = $res->fetch_assoc();
+    
+    $stmt->bind_result($idusuario,$nombre);
+    $stmt->fetch();
     $stmt->close();
-    return (object)$row;
+    return usuarioobj($idusuario,$nombre);
 }
 
 function lista_usuarios($con)
@@ -59,12 +70,5 @@ function lista_usuarios($con)
     }
     return $return;
 }
-
-
-
-
-
-
-
 
 ?>

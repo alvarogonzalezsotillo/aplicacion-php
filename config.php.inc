@@ -1,6 +1,7 @@
 
 <?php
 
+$koding = 0;
 $local = 1;
 
 if($koding)
