@@ -12,7 +12,7 @@ if( isset($_POST['nombre']) )
 {
     $nombreusuario = $_POST['nombre'];
     modifica_usuario($con,$idusuario,$nombreusuario);
-    header("Location: usuarios.php");
+    header("Location: usuarios.php?refresh=". microtime() );
     die();
 }
 $usuario = lee_usuario($con,$idusuario);

@@ -20,7 +20,7 @@
 
         El usuario <?php echo $usuario->nombre ?> ha sido creado con indentificador <?php echo $usuario->idusuario ?>
 
-        <input type="submit" value="Volver a la lista de usuarios" onclick="window.location.href='usuarios.php'">
+        <input type="submit" value="Volver a la lista de usuarios" onclick="window.location.href='usuarios.php?refresh=<?php echo microtime() ?>'">
 
 
     </body>

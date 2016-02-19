@@ -1,8 +1,8 @@
 
 <?php
 
-$koding_de_alvaro_gonzalez = 0;
-$local = 1;
+$koding_de_alvaro_gonzalez = 1;
+$local = 0;
 
 if($koding_de_alvaro_gonzalez)
 {
