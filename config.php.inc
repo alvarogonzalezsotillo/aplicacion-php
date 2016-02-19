@@ -1,8 +1,8 @@
 
 <?php
 
-$koding = 0;
-$local = 1;
+$koding = 1;
+$local = 0;
 
 if($koding)
 {
