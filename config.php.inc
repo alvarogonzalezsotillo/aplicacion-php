@@ -1,10 +1,10 @@
 
 <?php
 
-$koding = 1;
-$local = 0;
+$koding_de_alvaro_gonzalez = 0;
+$local = 1;
 
-if($koding)
+if($koding_de_alvaro_gonzalez)
 {
     $bbdd_name="aplicacion-php";
     $bbdd_user="aplicacion-php";
