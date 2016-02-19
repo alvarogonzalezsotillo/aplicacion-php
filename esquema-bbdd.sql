@@ -91,8 +91,8 @@ ALTER TABLE `mensajes`
 --
 -- Constraints for table `usuarios`
 --
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`idusuario`) REFERENCES `mensajes` (`idusuariodestino`);
+ALTER TABLE `mensajes`
+  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`idusuariodestino`) REFERENCES `usuarios` (`idusuario`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
